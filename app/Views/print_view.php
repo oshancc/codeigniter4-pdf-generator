@@ -23,7 +23,8 @@
         <th>Email</th>
         <th>Contact</th>
         <th>Description</th>
-        <th>Edit</th>
+        <th></th>
+        <th></th>
     </tr>
 <?php foreach($post  as $p) : ?>
     <tbody>
@@ -34,6 +35,7 @@
             <td><?= $p['contact'] ?></td>
             <td><?= $p['description'] ?></td>
             <td><a href="/printcontroller/edit/<?= $p['id'] ?>"><button type="button" class="btn btn-warning">edit</button></a></td>
+            <td><a href="/pdfcontroller/downloadone/<?= $p['id'] ?>"><button type="button" class="btn btn-success">download</button></a></td>
         </tr>
     </tbody>
     

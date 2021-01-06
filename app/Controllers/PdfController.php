@@ -56,6 +56,39 @@ class PdfController extends BaseController
        
 	}
 
-	
+        
+        public function downloadOne($id)
+	{
+        $dompdf = new \Dompdf\Dompdf();
+        $model  = new PrintModel();
+        $post  = $model->find($id);
+
+        $pdfname = $post['name'];
+
+        $output = "<html><body>";
+             
+          $output.=$post['name'];
+          $output.="<br><br>";
+          $output.=$post['email'];
+          $output.="<br><br>";
+          $output.=$post['contact'];
+          $output.="<br><br>";
+          $output.=$post['description'];
+          $output.="<br><br><br>";
+
+          
+         $output.="</body></html>";
+         echo $output;
+  
+     
+  
+         $dompdf->loadHtml($output);
+          $dompdf->setPaper('A4', 'potrait');
+          $dompdf->render();
+          ob_end_clean();
+          $dompdf->stream('user.pdf');
+
+          
+	}
 
 }
